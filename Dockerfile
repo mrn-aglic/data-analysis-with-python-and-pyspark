@@ -77,11 +77,6 @@ RUN apt-get update -y && \
     pip3 install wget jupyterlab==${jupyterlab_version}
 
 
-ENV KERNEL_NAME="pyspark"
-
-RUN cat pyspark_kernel.template | pyhocon -f json >> /usr/local/share/jupyter/kernels/${KERNEL_NAME}/kernel.json
-
 WORKDIR /opt/notebooks
 
 CMD jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=
-

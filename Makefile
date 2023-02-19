@@ -28,5 +28,8 @@ stop:
 submit:
 	docker exec spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/$(app)
 
+submit-b:
+	docker exec spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/book/
+
 rm-results:
 	rm -r data/results/*
