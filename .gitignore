@@ -2,3 +2,4 @@
 .DS_Store
 data/*
 /docker-compose.generated.yml
+notebooks/*/.ipynb_checkpoints

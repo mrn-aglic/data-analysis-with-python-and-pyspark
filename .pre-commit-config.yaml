@@ -53,3 +53,9 @@ repos:
     rev: 1.4.0
     hooks:
       - id: relint
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.6.1
+    hooks:
+      - id: nbstripout
+        args: [ "--extra-keys", "metadata.pycharm" ]
