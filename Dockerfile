@@ -1,6 +1,6 @@
-FROM python:3.10-bullseye as spark-base
+FROM python:3.11-bullseye as spark-base
 
-ARG SPARK_VERSION=3.3.2
+ARG SPARK_VERSION=3.4.0
 
 # Install tools required by the OS
 RUN apt-get update && \
@@ -71,7 +71,7 @@ FROM pyspark-base as jupyter-notebook
 
 ENV PATH="/opt/spark/sbin:/opt/spark/bin:${PATH}"
 
-ARG jupyterlab_version=3.6.1
+ARG jupyterlab_version=4.0.1
 
 RUN mkdir /opt/notebooks
 

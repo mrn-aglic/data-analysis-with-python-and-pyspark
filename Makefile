@@ -1,5 +1,5 @@
 build:
-	docker-compose build
+	docker compose build
 
 build-nc:
 	docker compose build --no-cache
@@ -18,6 +18,9 @@ run-generated:
 
 run-scaled:
 	make down && docker compose up --scale spark-worker=3
+
+run-jupyter:
+	make down && docker compose up spark-jupyter
 
 run-d:
 	make down && docker compose up -d
