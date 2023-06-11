@@ -1,8 +1,9 @@
-from pyspark.sql import SparkSession
 from functools import reduce
+
+import pandas as pd
 import pyspark.sql.functions as F
 import pyspark.sql.types as T
-import pandas as pd
+from pyspark.sql import SparkSession
 
 spark = SparkSession.builder.appName("CH 09 - series to series UDF").getOrCreate()
 
@@ -21,6 +22,7 @@ gsod = (
 )
 
 gsod.show(5)
+
 
 @F.pandas_udf(T.DoubleType())
 def f_to_c(degrees: pd.Series) -> pd.Series:

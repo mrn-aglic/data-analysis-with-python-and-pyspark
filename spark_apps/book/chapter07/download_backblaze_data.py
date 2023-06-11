@@ -36,7 +36,6 @@ DATASETS_MINIMAL = DATASETS_FULL[2:3]  # Slice to keep as a list. Simplifies
 # the code later.
 
 if __name__ == "__main__":
-
     # DON'T RUN THIS FROM DOCKER - THE DIRECTORY NAMES DO NOT MATCH
     try:
         param = sys.argv[1]

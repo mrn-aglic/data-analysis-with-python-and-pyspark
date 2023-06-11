@@ -25,6 +25,7 @@ print(cnt)
 a_rdd = sc.parallelize([0, 1, None, [], 0.0])
 a_rdd.filter(lambda x: x).collect().show(5)
 
+
 # ex 8.3
 def temp_to_temp(value: float, _from: str, to: str) -> Optional[float]:
     _from = str.upper(_from)
@@ -140,7 +141,6 @@ def add_two_fractions(first: Frac, second: Frac) -> Optional[Frac]:
     s_num, s_denom = second
 
     if f_denom and s_denom:
-
         result = Fraction(f_num, f_denom) + Fraction(s_num, s_denom)
         return result.numerator, result.denominator
 
