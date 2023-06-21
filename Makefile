@@ -32,7 +32,16 @@ submit:
 	docker exec spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/$(app)
 
 submit-b:
-	docker exec spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/book/
+	docker exec spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/book/$(app)
+
+submit-word-count:
+	docker exec spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/book/chapter11/word_counting.py
+
+submit-word-count-2:
+	docker exec spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/book/chapter11/word_counting_2.py
+
+pyspark-shell:
+	docker exec -it spark-master pyspark
 
 rm-results:
 	rm -r data/results/*

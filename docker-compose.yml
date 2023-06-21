@@ -13,7 +13,6 @@ services:
       - ./data:/opt/spark/data
     ports:
       - '8888:8888'
-      - '4040:4040'
 
   spark-master:
     container_name: spark-master
@@ -37,6 +36,7 @@ services:
     ports:
       - '9090:8080'
       - '7077:7077'
+      - '4040:4040'
 
 
   spark-history-server:
