@@ -1,6 +1,6 @@
 FROM python:3.11-bullseye as spark-base
 
-ARG SPARK_VERSION=3.4.0
+ARG SPARK_VERSION=3.4.1
 
 # Install tools required by the OS
 RUN apt-get update && \
@@ -20,6 +20,7 @@ RUN apt-get update &&  \
     apt-get install -y rsync && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
 
 # Setup the directories for our Spark and Hadoop installations
 ENV SPARK_HOME=${SPARK_HOME:-"/opt/spark"}
