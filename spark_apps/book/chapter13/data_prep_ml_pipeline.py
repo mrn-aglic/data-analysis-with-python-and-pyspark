@@ -181,3 +181,47 @@ train.cache()
 
 food_pipeline_model = food_pipeline.fit(train)
 results = food_pipeline_model.transform(test)
+
+# evaluating the model - confusion matrix
+results.groupby("dessert").pivot("prediction").count().show()
+
+# evaluating the model - precision and recall
+lr_model = food_pipeline_model.stages[-1]
+metrics = lr_model.evaluate(results.select("title", "dessert", "features"))
+
+print(f"Model precision: {metrics.precisionByLabel[1]}")
+print(f"Model recall: {metrics.recallByLabel[1]}")
+
+# evaluating the model - ROC curve
+from pyspark.ml.evaluation import BinaryClassificationEvaluator
+
+evaluator = BinaryClassificationEvaluator(
+    labelCol="dessert", rawPredictionCol="rawPrediction", metricName="areaUnderROC"
+)
+
+accuracy = evaluator.evaluate(results)
+print(f"Area under ROC = {accuracy}")
+
+# optimizing hyperparameters with cross-validation
+from pyspark.ml.tuning import ParamGridBuilder
+
+grid_search = ParamGridBuilder().addGrid(lr.elasticNetParam, [0.0, 1.0]).build()
+
+print(grid_search)
+
+from pyspark.ml.tuning import CrossValidator
+
+cv = CrossValidator(
+    estimator=food_pipeline,
+    estimatorParamMaps=grid_search,
+    evaluator=evaluator,
+    numFolds=3,
+    seed=13,
+    collectSubModels=True,
+)
+
+cv_model = cv.fit(train)
+
+print(cv_model.avgMetrics)
+
+pipeline_food_model = cv_model.bestModel
