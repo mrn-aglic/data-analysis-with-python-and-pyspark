@@ -225,3 +225,20 @@ cv_model = cv.fit(train)
 print(cv_model.avgMetrics)
 
 pipeline_food_model = cv_model.bestModel
+
+
+# extracting feature names from the features vector
+import pandas as pd
+
+feature_names = ["(intercept)"] + [
+    x["name"]
+    for x in food_features.schema["features"].metadata["ml_attr"]["attrs"]["numeric"]
+]
+
+feature_coefficients = [lr_model.intercept] + list(lr_model.coefficients.values)
+
+coefficients = pd.DataFrame(feature_coefficients, index=feature_names, columns=["coef"])
+
+coefficients["abs_coef"] = coefficients["coef"].abs()
+
+print(coefficients.sort_values(["abs_coef"]))
