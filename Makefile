@@ -40,6 +40,13 @@ submit-word-count:
 submit-word-count-2:
 	docker exec spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/book/chapter11/word_counting_2.py
 
+submit-scalarnafiller:
+	docker exec spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/book/chapter14/ScalarNAFiller.py
+
+submit-extremevaluecapper:
+	docker exec spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/book/chapter14/ExtremeValueCapper.py
+
+
 pyspark-shell:
 	docker exec -it spark-master pyspark
 
