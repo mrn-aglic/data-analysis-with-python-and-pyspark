@@ -3,3 +3,4 @@
 data/*
 /docker-compose.generated.yml
 notebooks/*/.ipynb_checkpoints
+spark_apps/book/chapter14/__pycache__

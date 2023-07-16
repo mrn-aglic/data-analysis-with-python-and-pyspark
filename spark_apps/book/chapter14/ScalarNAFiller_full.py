@@ -29,6 +29,7 @@ def scalarNAFillerFunction(
 scalarNAFillerFunction(test_df, F.col("three"), "five", -99.0).show()
 
 
+# pylint: disable=too-many-arguments
 class ScalarNAFiller(
     Transformer, HasInputCol, HasOutputCol, HasInputCols, HasOutputCols
 ):
@@ -89,7 +90,7 @@ class ScalarNAFiller(
     def check_params(self):
         # Test #1: either inputCol or inputCols can be set (but not both).
         if self.isSet("inputCol") and (self.isSet("inputCols")):
-            raise ValueError("Only one of `inputCol` and `inputCols`" "must be set.")
+            raise ValueError("Only one of `inputCol` and `inputCols` must be set.")
 
         # Test #2: at least one of inputCol or inputCols must be set.
         if not (self.isSet("inputCol") or self.isSet("inputCols")):

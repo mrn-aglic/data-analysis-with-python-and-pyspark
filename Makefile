@@ -47,6 +47,10 @@ submit-extremevaluecapper:
 	docker exec spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/book/chapter14/ExtremeValueCapper.py
 
 
+submit-food-pipeline:
+	docker exec spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/book/chapter14/pipeline_with_custom_components.py
+
+
 pyspark-shell:
 	docker exec -it spark-master pyspark
 

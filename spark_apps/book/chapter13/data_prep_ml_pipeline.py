@@ -121,6 +121,8 @@ food = food.withColumn(
     "protein_ratio", F.col("protein") * 4 / F.col("calories")
 ).withColumn("fat_ratio", F.col("fat") * 9 / F.col("calories"))
 
+CONTINUOUS_COLUMNS += ["protein_ratio", "fat_ratio"]
+
 food = food.fillna(0.0, subset=["protein_ratio", "fat_ratio"])
 
 
